@@ -117,6 +117,9 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        $tag->delete();
+    
+        return redirect('/admin/tag')->with('success', '标签「' . $tag->tag . '」已经被删除.');
     }
 }
