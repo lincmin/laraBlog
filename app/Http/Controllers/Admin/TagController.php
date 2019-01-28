@@ -48,7 +48,7 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param TagCreateRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(TagCreateRequest $request)
@@ -60,17 +60,6 @@ class TagController extends Controller
         $tag->save();
 
         return redirect('/admin/tag')->with('success', '标签「'.$tag->tag.'」创建成功.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
