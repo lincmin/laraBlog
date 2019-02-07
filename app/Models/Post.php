@@ -10,6 +10,9 @@ class Post extends Model
 {
     protected $dates = ['published_at'];
 
+    protected $fillable = [
+        'title', 'subtitle', 'content_raw', 'page_image', 'meta_description','layout', 'is_draft', 'published_at',
+    ];
      /**
      * The many-to-many relationship between posts and tags.
      *
@@ -17,7 +20,7 @@ class Post extends Model
      */
     public function tags()
     {
-        return $this->belongToMany(Tag::class,'post_tag_pivot');
+        return $this->belongsToMany(Tag::class,'post_tag_pivot');
     }
 
     /**
@@ -83,5 +86,29 @@ class Post extends Model
         }
 
         $this->tags()->detach();
+    }
+
+    /**
+     * 返回 published_at 字段的日期部分
+     */
+    public function getPublishDateAttribute($value)
+    {
+        return $this->published_at->format('Y-m-d');
+    }
+
+    /**
+     * 返回 published_at 字段的时间部分
+     */
+    public function getPublishTimeAttribute($value)
+    {
+        return $this->published_at->format('g:i A');
+    }
+
+    /**
+     * content_raw 字段别名
+     */
+    public function getContentAttribute($value)
+    {
+        return $this->content_raw;
     }
 }

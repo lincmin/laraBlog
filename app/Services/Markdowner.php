@@ -16,11 +16,11 @@ class Markdowner
         return $text;
     }
 
-    protected function preTransformText($test)
+    protected function preTransformText($text)
     {
       return $text;
     }
-    protected function postTransformText($test)
+    protected function postTransformText($text)
     {
       return $text;
     }
